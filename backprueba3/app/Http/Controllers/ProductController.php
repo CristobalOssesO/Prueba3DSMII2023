@@ -61,7 +61,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        try{
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'image' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'quantity' => 'required',
+                'status' => 'required'
+            ]);
+        }
+        catch (\Exception $exception){
+            throw new \Exception($exception->getMessage());
+        }
     }
 
     /**
